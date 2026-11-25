@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Misi Pengembaraan Hijrah</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #49321e;
+  background: linear-gradient(180deg, #a9dcf0, #f9df9c);
+}
+
+button {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 5px;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+.primary {
+  background: #ed9d35;
+  color: #422c1b;
+}
+
+.green {
+  background: #378969;
+  color: white;
+}
+
+.light {
+  background: #fff8e8;
+  color: #49341e;
+}
+
+.red {
+  background: #c93636 !important;
+  color: white !important;
+}
+
+.correct {
+  background: #3e9b5c !important;
+  color: white !important;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.screen {
+  display: none;
+  max-width: 1000px;
+  margin: auto;
+  min-height: 90vh;
+  padding: 24px;
+  text-align: center;
+}
+
+.screen.active {
+  display: block;
+}
+
+.card {
+  background: rgba(255, 248, 232, 0.96);
+  border-radius: 25px;
+  padding: 28px;
+  box-shadow: 0 8px 20px rgba(76, 49, 25, 0.18);
+  margin: 20px auto;
+}
+
+h1 {
+  font-size: clamp(32px, 6vw, 58px);
+  margin: 15px 0;
+}
+
+h2 {
+  color: #307b60;
+}
+
+.subtitle {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.music-box {
+  background: #fff8e8;
+  border: 2px solid #edc77b;
+  border-radius: 15px;
+  padding: 12px;
+  margin: 10px auto 20px;
+  max-width: 420px;
+}
+
+.music-status {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+  color: #624a32;
+}
+
+.map {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.location {
+  min-height: 100px;
+  background: #f1d18b;
+  color: #49321e;
+  border: 3px solid #378969;
+  border-radius: 18px;
+  padding: 15px;
+  font-size: 17px;
+}
+
+.location.completed {
+  background: #b8dfba;
+}
+
+.location.challenge {
+  background: #f4b66b;
+}
+
+.fact {
+  background: white;
+  border-left: 6px solid #378969;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 12px auto;
+  max-width: 700px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.answers {
+  display: grid;
+  gap: 12px;
+  max-width: 650px;
+  margin: 20px auto;
+}
+
+.answer {
+  background: white;
+  border: 3px solid #d9b875;
+  text-align: left;
+  font-size: 17px;
+}
+
+.answer.wrong {
+  background: #d94747;
+  color: white;
+  border-color: #a81717;
+}
+
+.answer.correct {
+  background: #45a860;
+  color: white;
+  border-color: #237238;
+}
+
+.feedback {
+  display: none;
+  padding: 18px;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 600px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.feedback.show {
+  display: block;
+}
+
+.feedback.wrong-feedback {
+  background: #ffe0e0;
+  color: #a81818;
+}
+
+.feedback.correct-feedback {
+  background: #dff5df;
+  color: #207039;
+}
+
+.big-x {
+  font-size: 55px;
+  color: #c93636;
+}
+
+.big-check {
+  font-size: 55px;
+  color: #3e9b5c;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.small-note {
+  font-size: 14px;
+  color: #624a32;
+  line-height: 1.5;
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+  <!-- MENU UTAMA -->
+  <section id="home" class="screen active">
+    <div class="card">
+      <div class="music-box">
+        <button class="green" onclick="playMusic('home')">▶ MAIN MUZIK</button>
+        <button class="light" onclick="stopMusic()">■ MATI</button>
+        <div id="musicStatus" class="music-status">Muzik dimatikan</div>
+      </div>
+
+      <p class="small-note">PENGEMBARAAN ILMU · TAHUN 3</p>
+      <h1>MISI PENGEMBARAAN HIJRAH</h1>
+      <p class="subtitle">
+        Jelajah padang pasir, kenali kisah Hijrah dan selesaikan lima cabaran.
+      </p>
+
+      <button class="primary" onclick="showScreen('instructions')">
+        MULA PENGEMBARAAN →
+      </button>
+    </div>
+  </section>
+
+  <!-- CARA BERMAIN -->
+  <section id="instructions" class="screen">
+    <div class="card">
+      <div class="music-box">
+        <button class="green" onclick="playMusic('instructions')">▶ MAIN MUZIK</button>
+        <button class="light" onclick="stopMusic()">■ MATI</button>
+        <div id="musicStatus2" class="music-status">Muzik dimatikan</div>
+      </div>
+
+      <h2>Cara Bermain</h2>
+      <p class="subtitle">
+        Pilih lokasi pada peta. Baca fakta di setiap lokasi dan jawab cabaran.
+        Jika jawapan salah, cuba semula sehingga mendapat jawapan yang betul.
+      </p>
+
+      <button class="primary" onclick="showScreen('map')">
+        LIHAT PETA →
+      </button>
+    </div>
+  </section>
+
+  <!-- PETA -->
+  <section id="map" class="screen">
+    <div class="card">
+      <div class="music-box">
+        <button class="green" onclick="
